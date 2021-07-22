@@ -1,0 +1,16 @@
+@charset "utf-8";
+/* CSS Document */
+/* Fonts for Exam Style Questions */
+
+/* Default text size and font throughout question */
+.formulation, table, td input, input {
+	font-size: 12px!important;
+}
+/* Size of font for drop down boxes shown in a table */
+.formulation td select {
+	font-size: 12px!important;
+}
+/* Font size for all other drop down boxes not included in a table or have normalWidth class in a table */
+.formulation select, .formulation td .normalWidth select {
+	font-size: 12px!important;
+}

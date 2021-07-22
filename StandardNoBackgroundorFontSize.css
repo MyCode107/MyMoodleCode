@@ -1,0 +1,164 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* Default text size and font throughout question */
+.formulation, table, td input, input {
+	font-family: arial;
+/*	font-size: 12px!important;*/
+	line-height: 1.5;
+}
+/* For making main heading larger */
+.normalHeading {
+	font-weight: bold;
+	font-size: 16px;
+	padding-bottom: 16px;
+}	
+/* For adding red text to highlight important information for students */
+.redComment {
+	color: red;
+}
+/* For adding bold text */
+.boldLines {
+	font-weight: bold;
+}
+/* Default positioning of entries in all intput boxes */
+.formulation input {
+	text-align: right;
+	overflow: hidden;
+	border-color: #fff!important;
+}
+/* Width of input boxes shown in a table */
+.formulation td input[type="text"]{
+	width: 90%;
+}
+/* Use auto width for all other input boxes with .normalWidth class */
+.formulation td .normalWidth input[type="text"] , .formulation .normalWidth input[type="text"]{
+	width: auto;
+}
+/* Position of labels for all radio buttons */
+.formulation td input[type="radio"], input[type="radio"] {
+	text-align: left;
+	margin-right: 5px;
+}
+/* Width of drop down boxes shown in a table, plus positioning of entries and size of font */
+.formulation td select {
+	width: 90%;
+	text-align: left;
+/*	font-size: 12px!important;*/
+}
+/* Use auto width (and this positioning and font size) for all other drop down boxes not included in a table or have normalWidth class in a table */
+.formulation select, .formulation td .normalWidth select {
+	width: auto;
+	text-align: left;
+/*	font-size: 12px!important;*/
+}
+/* Table defaults for text positioning, table outline and gaps between cells */
+table {
+    border-collapse: collapse;
+    text-align: center;
+    vertical-align: middle;
+    border: 2px solid black;
+    font-weight: normal;
+}
+/* For adding grid lines to all table cells */
+td
+{
+    border: 1px solid black;
+    padding: 2px;
+}
+/* For making the top row of a table green with white text */
+.toprow {
+	font-weight: bold;
+	color: white;
+	background-color: #00a850;
+	;
+	border-top-color: #000;
+	border-right-color: #000;
+	border-bottom-color: #000;
+	border-left-color: #000;
+}
+/* For making dummy input boxes the same as real ones */
+.blankcell {
+	display:inline-block;
+	margin-bottom: .25rem!important;
+	border-color: #fff!important;
+	}
+/* For ensuring a white background - mostly used with dummy input boxes */
+.whitetable {
+		background-color: #fff;
+	}
+/* For auto sizing different sized tables on screen */
+.table300 {
+		max-width: 300px;
+		width: 100%;
+	}
+.table400 {
+		max-width: 400px;
+		width: 100%;
+	}
+.table500 {
+		max-width: 500px;
+		width: 100%;
+	}
+.table600 {
+		max-width: 600px;
+		width: 100%;
+	}
+.table700 {
+		max-width: 700px;
+		width: 100%;
+	}
+.table800 {
+		max-width: 800px;
+		width: 100%;
+	}
+.table900 {
+		max-width: 900px;
+		width: 100%;
+	}
+.table1000 {
+		max-width: 1000px;
+		width: 100%;
+	}
+/* For the rare occasion when a table is shown within another table */
+td table {
+	border-collapse:collapse;
+	text-align: center;
+	vertical-align: middle;
+	border: 0px solid black;
+}
+/* For clearing floats where elements could be of different heights - add clearfix class to containing element */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+/* For final green dashed line at bottom of question */
+hr {
+    display: block;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: dashed;
+	border-left-style: none;
+	border-width: 1px;
+	width: 100%;
+	clear: both;
+	height: 2px;
+	border-color: #00a850;
+	margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;   
+}
+/* For manipulating the colour of right and wrong answers */
+.special input.incorrect[value=""] {
+	background-color: #dff0d8;
+	border-color: #468847;
+}
+.special input.correct {
+	background-color: #f2dede;
+}
+/* For identifying OFR boxes */
+.OFR { }
+/* For identifying TOTAL boxes */
+.TOTAL { }

@@ -1,0 +1,298 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Testing JS File</title>
+	
+	<!--  Standard Moodle CSS -->
+	<link rel="stylesheet" href="StandardNoBackgroundorFontSize.css">
+	<!--  Font Size for Exam Style Questions  -->
+<!--	<link rel="stylesheet" href="Exam Font Size.css">-->
+	<!--  Font Size for non-Exam Style Questions -->
+	<link rel="stylesheet" href="Normal Font Size.css">
+	
+	<!--  Add WH Background colour -->
+<!--	<link rel="stylesheet" href="https://drive.google.com/uc?export=view&id=15ixQAKFQ88zQIHZbRt1LiKbAFoRGSCAs">-->
+	<!--  Add BPP Background colour -->
+<!--	<link href="https://drive.google.com/uc?export=view&id=1Prg55tAeaPWCnZF-ZsWgLndIR1D-t2pI" rel="stylesheet" type="text/css">-->
+	<!--  AAT Background colour CSS -->
+	<link rel="stylesheet" href="AATGreenBackground.css">
+	
+	<!--  jQuery Library -->
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<!--  Common Functions JS -->
+	<script	src="CommonFunctions.js"></script>
+	<!--  OFR Functions JS -->
+	<script	src="OFR.js"></script>
+	<!--  TOTALS Functions JS -->
+	<script	src="TOTALS.js"></script>
+	
+	
+	<!--  Test js - shades second input box
+	<script	src="https://drive.google.com/uc?export=view&amp;id=1LHlKFhfNorov-a-x9M_I5LJAcCuA7Nlj"></script>  
+	-->
+	
+<script>
+	
+$(document).ready(function() { 
+	
+	//Test Javascript files are working
+	//testing();
+	
+/*
+	//Create array of all input boxes in question - move to Common Functions file *****************************
+	function getBoxes(){	
+		//Create array of all input boxes on page (not just question)
+		var allBoxesOnPage = document.getElementsByClassName('form-control');
+		//Create empty array of all input boxes just in question
+		allBoxes = new Array(); //Not using var means global variable
+		//Find just those boxes within question and populate allBoxes array
+		var n;
+		for (n = 0; n < allBoxesOnPage.length; n++) {
+			var questionBoxTrue = hasSomeParentTheClass(allBoxesOnPage[n], 'formulation');
+			if (questionBoxTrue) {
+				allBoxes.push(allBoxesOnPage[n]);
+			};
+		};
+	};
+*/
+	
+	
+/*
+	//Using an array of strings denoting calculations, calculate a value for a given input box - move to common functions file *******************************
+	//Format = [sign, +, -, * or /] followed by either ["B" (or "b") and a number representing the input box number in question] or [simply a number]
+	//However, last element in array (must be integer) represents number of decimal places to round calculated value
+	function calculateValue(Calculation) {
+		var ReturnValue = 0;
+		var m;
+		try {
+			//For each calculation in the array 'Calculation'
+			for (m = 0; m < Calculation.length-1; m++) {
+				console.log("Step " + (m+1) + " " + Calculation[m]);
+				if (Calculation[m].charAt(1) == "B" || Calculation[m].charAt(1) == "b") {
+					//If rest of string contains only digits then convert to boxNum and update ReturnValue
+					if (/^\d+$/.test(Calculation[m].substring(2))) {
+						var boxNum = parseFloat(Calculation[m].substring(2));
+						switch(Calculation[m].charAt(0)) {
+							case "+":
+								if (!(Number.isNaN(parseFloat(allBoxes[boxNum].value)))) {
+									ReturnValue += parseFloat(allBoxes[boxNum].value);	
+								} else {
+									throw 'NaN Value';
+								};
+								break;
+							case "-":
+								if (!(Number.isNaN(parseFloat(allBoxes[boxNum].value)))) {
+									ReturnValue -= parseFloat(allBoxes[boxNum].value);	
+								} else {
+									throw 'NaN Value';
+								};
+								break;
+							case "/":
+								if (!(Number.isNaN(parseFloat(allBoxes[boxNum].value)))) {
+									ReturnValue /= parseFloat(allBoxes[boxNum].value);	
+								} else {
+									throw 'NaN Value';
+								};
+								break;
+							case "*":
+								if (!(Number.isNaN(parseFloat(allBoxes[boxNum].value)))) {
+									ReturnValue *= parseFloat(allBoxes[boxNum].value);	
+								} else {
+									throw 'NaN Value';
+								};
+								break;
+							default:
+								ReturnValue += 0;
+						};  //End Switch
+					}
+					else {
+						throw 'Not a box number';	
+					}; //End of IF in IF statement
+				} else {
+					//If rest of string contains only digits then convert to number and update ReturnValue
+					if (/^\d+$/.test(Calculation[m].substring(1))) {	
+						var numberValue = parseFloat(Calculation[m].substring(1));
+						switch(Calculation[m].charAt(0)) {
+							case "+":
+								ReturnValue += numberValue;
+								break
+							case "-":
+								ReturnValue -= numberValue;
+								break
+							case "/":
+								ReturnValue /= numberValue;
+								break
+							case "*":
+								ReturnValue *= numberValue;
+								break
+							default:
+								ReturnValue += 0;
+						};  //End Switch
+					}
+					else {
+						throw 'Not a number';	
+					};  //End of IF in ELSE statement
+				};  //End IF ELSE
+			}; // End FOR Loop
+		}
+		catch {
+			//For errors such as invalid boxNum or out of range boxNum, or invalid absolute number
+			console.log("Error calculating value, check calculation array entered.")
+		}; // End of Try Catch statement
+		
+		//Round to given number of decimal places - if not given as integer between 0 and 5, then ignored
+		var	DecPl = Calculation[Calculation.length - 1];
+		if (Number.isInteger(DecPl) && (DecPl >=0 && DecPl <=5)) {
+			var temp = parseFloat(ReturnValue.toFixed(DecPl));
+			ReturnValue = temp;
+		};
+		return ReturnValue;
+	};
+*/
+	
+	
+/*
+	//Check whether an OFR box should be shaded to highlight that extra marks should be added - move to OFR file ***************************************
+	function OFRCheck(OFRInfo) {
+		//Cycle through all input boxes in question
+		var i;
+		var OFRTrue;
+		var OFRValue;
+		var OFRCount = 0;  //Count of all OFR boxes, correct or incorrect
+		for (i = 0; i < allBoxes.length; i++) {
+			//Check to see if the box is an OFR box
+			OFRTrue = hasSomeParentTheClass(allBoxes[i], 'OFR');
+			if (OFRTrue) {
+				console.log("OFR box number " + OFRCount + " is ");
+				//Check to see if the OFR box is incorrect
+				if (allBoxes[i].classList.contains("incorrect")) {
+					console.log("incorrect");
+					//If box is an OFR and incorrect, use OFRInfo to determine if background colour should change
+					//But first check that an OFR calculation has been entered by user
+					if (!(typeof OFRInfo[OFRCount] == 'undefined')) {
+						OFRValue = calculateValue(OFRInfo[OFRCount]);
+						console.log("OFRValue = " + OFRValue + " versus Box Value = " + allBoxes[i].value);
+						//If input box value and OFR calculated value are the same, change background colour
+						if (allBoxes[i].value == OFRValue && (!(allBoxes[i].value == ''))) {
+							allBoxes[i].style.backgroundColor = "rgba(253, 212, 5, 0.3)";	
+						};  //End colour change IF statement
+					}
+					else {
+						console.log("No valid OFR calculation given.");
+					}; //End of IF statement that checks whether an OFR calculationn has been entered
+				}
+				else {
+					console.log("correct");
+				};  //End of IF statment that checks if OFR box is incorrect
+				//Increment OFR count
+				OFRCount = ++OFRCount;
+			};  //End of IF statement that checks if input box is an OFR box
+		};  //End of FOR loop working through all input boxes in question
+	};  //End of OFRCheck function
+*/
+
+
+	//Create array of all input boxes in question called allBoxes - used for OFR, Totals and Groups
+	getBoxes();
+	
+	//Deal with OFR boxes when DOM ready
+	//Parameter for OFRCheck function is an array of arrays of strings giving OFR calculations - see function calculateValue for format
+	//If too many arrays of strings are given, excess arrays are ignored.  If too few arrays of strings are given, latter OFR calculations are not performed and box doesn't change colour if required
+	OFRCheck([["+B1","+B2",0],["+1000","+B1","+B2",0]]);
+	
+	
+/*
+	//Function to update totals in each total box - move to TOTAL js file ********************************
+	function updateTotals(TotalInfo) {
+		//Find just the total boxes, and for each one, calculate new total (value)
+		var m;
+		var countTotalBoxes = 0;  //Count of all TOTAL boxes
+		for (m = 0; m < allBoxes.length; m++) {
+			//Check to see if the box is a TOTAL box
+			var totalBoxTrue = hasSomeParentTheClass(allBoxes[m], 'TOTAL');
+			if (totalBoxTrue) {
+				console.log("TOTAL box number " + countTotalBoxes + " is ");
+				//Format total boxes 
+				allBoxes[m].style.backgroundColor = "rgba(0, 168, 81, 0.3)";
+				allBoxes[m].style.color = "black;";
+				allBoxes[m].style.fontWeight = "bold";
+				//Update total value
+				allBoxes[m].value = calculateValue(TotalInfo[countTotalBoxes]);
+				//Increment Total Boxes count
+				countTotalBoxes = ++countTotalBoxes;				
+			};
+		};
+	};
+*/
+	
+		
+	//Deal with TOTAL boxes when DOM ready and on button click	
+	// Calcaultions for Total boxes - shown separately as used twiced
+	var totalCalculations = [["+B6","+B8",0],["+B7","+B9",0]];
+		
+	//Update totals on page loading
+	updateTotals(totalCalculations);
+	
+	//Update totals when button clicked
+	document.getElementById("updateButton").addEventListener("click", function() {updateTotals(totalCalculations);});
+	
+});
+
+	
+</script>
+
+</head>
+<body class="formulation">
+
+<noscript>
+    Your browser does not support JavaScript!
+</noscript>
+	
+<p class="normalHeading">JavaScript Testing Page</p>
+<p>Some question text.</p>
+<p>A multiple choice question, choices shown vertically, answer is 99 {:MCVS:~=99~100~98}</p>
+<p>A short answer question, answer is 99 {:SA:~=99}</p>
+<p>&nbsp;</p>
+<p class="boldLines" style="font-size: 125%;">OFR Testing</p>
+<p>Figure A given in question text is <span class="boldLines">100</span> - Figure B given in question text is  <span class="boldLines">1000</span></p>
+<p>Some more question text.</p>
+<p>Input Value 1 - {:NM:~=99} (Answer is 99)</p>
+<p>Input Value 2 - {:NM:~=99} (Answer is 99)</p>
+<p>Random input box not generated by Moodle - <input class = "form-control" style="width: auto;">
+ (This is to test to see if I need to refer to it in the code. Box needs to be of class &quot;form-control&quot; for display, and have auto width. Answer, include in Box count.)</p>
+<p>Input Value 3 - <span class="OFR">{:NM:~=198}</span> - Answer is 198, being Input Value 1 + Input Value 2. Box should be shaded amber when marked if answer entered is 1 + 2 but NOT 198</p>
+<p>Input Value 4 - <span class="OFR">{:NM:=1198}</span> - Answer is 1198, being Input Value 1 + Input Value 2 + Figure B in question of 1000. Box should be shaded amber when marked if answer entered is 1 + 2 + 1000 but NOT 1198</p>
+<p>(OFR class wrapped around input code for values 3 &amp; 4)</p>
+<p class="redComment">Red text to be added to questions if OFR used = &quot;Amber shaded boxes seen on completion of a question during review show where OFR marks could be awarded. Your tutor will review these and manually amend your score if needed.&quot;</p>
+<p>&nbsp;</p>
+<p class="boldLines" style="font-size: 125%;">Totals Testing</p>
+<table border="1" class="table500">
+  <tbody>
+    <tr>
+      <td width="34%">Value 1 - answers 99</td>
+      <td width="33%"> {:NM:~=99}</td>
+      <td width="33%">{:NM:~=99}</td>
+    </tr>
+    <tr>
+      <td width="34%">Value 2 - answers 99</td>
+      <td width="33%">{:NM:~=99}</td>
+      <td width="33%">{:NM:~=99}</td>
+    </tr>
+    <tr>
+      <td width="34%">TOTAL</td>
+      <td width="33%"><span class="TOTAL"><input class="form-control"></span></td>
+      <td width="33%"><span class="TOTAL"><input class="form-control"></span></td>
+    </tr>
+  </tbody>
+</table>
+<p>(Ensure total boxes are of class &quot;form-control&quot; for display and have TOTAL class wrapped around them.)</p>
+<p>
+  <input type="button" value="Update totals" id="updateButton">
+</p>
+<p>(Ensure button has id of 'updateButton'.)</p>
+<p class="redComment">Red text to be added to questions if Totals used = &quot;The auto sum total boxes seen in AAT exams have been replicated in this question as green shaded boxes. These boxes carry no marks and can be updated by clicking the button above.&quot;</p>
+<p>&nbsp;</p>
+<p class="boldLines">End</p>
+</body>
+</html>
