@@ -27,171 +27,9 @@
 	<!--  TOTALS Functions JS -->
 	<script	src="TOTALS.js"></script>
 	
-	
-	<!--  Test js - shades second input box
-	<script	src="https://drive.google.com/uc?export=view&amp;id=1LHlKFhfNorov-a-x9M_I5LJAcCuA7Nlj"></script>  
-	-->
-	
 <script>
 	
 $(document).ready(function() { 
-	
-	//Test Javascript files are working
-	//testing();
-	
-/*
-	//Create array of all input boxes in question - move to Common Functions file *****************************
-	function getBoxes(){	
-		//Create array of all input boxes on page (not just question)
-		var allBoxesOnPage = document.getElementsByClassName('form-control');
-		//Create empty array of all input boxes just in question
-		allBoxes = new Array(); //Not using var means global variable
-		//Find just those boxes within question and populate allBoxes array
-		var n;
-		for (n = 0; n < allBoxesOnPage.length; n++) {
-			var questionBoxTrue = hasSomeParentTheClass(allBoxesOnPage[n], 'formulation');
-			if (questionBoxTrue) {
-				allBoxes.push(allBoxesOnPage[n]);
-			};
-		};
-	};
-*/
-	
-	
-/*
-	//Using an array of strings denoting calculations, calculate a value for a given input box - move to common functions file *******************************
-	//Format = [sign, +, -, * or /] followed by either ["B" (or "b") and a number representing the input box number in question] or [simply a number]
-	//However, last element in array (must be integer) represents number of decimal places to round calculated value
-	function calculateValue(Calculation) {
-		var ReturnValue = 0;
-		var m;
-		try {
-			//For each calculation in the array 'Calculation'
-			for (m = 0; m < Calculation.length-1; m++) {
-				console.log("Step " + (m+1) + " " + Calculation[m]);
-				if (Calculation[m].charAt(1) == "B" || Calculation[m].charAt(1) == "b") {
-					//If rest of string contains only digits then convert to boxNum and update ReturnValue
-					if (/^\d+$/.test(Calculation[m].substring(2))) {
-						var boxNum = parseFloat(Calculation[m].substring(2));
-						switch(Calculation[m].charAt(0)) {
-							case "+":
-								if (!(Number.isNaN(parseFloat(allBoxes[boxNum].value)))) {
-									ReturnValue += parseFloat(allBoxes[boxNum].value);	
-								} else {
-									throw 'NaN Value';
-								};
-								break;
-							case "-":
-								if (!(Number.isNaN(parseFloat(allBoxes[boxNum].value)))) {
-									ReturnValue -= parseFloat(allBoxes[boxNum].value);	
-								} else {
-									throw 'NaN Value';
-								};
-								break;
-							case "/":
-								if (!(Number.isNaN(parseFloat(allBoxes[boxNum].value)))) {
-									ReturnValue /= parseFloat(allBoxes[boxNum].value);	
-								} else {
-									throw 'NaN Value';
-								};
-								break;
-							case "*":
-								if (!(Number.isNaN(parseFloat(allBoxes[boxNum].value)))) {
-									ReturnValue *= parseFloat(allBoxes[boxNum].value);	
-								} else {
-									throw 'NaN Value';
-								};
-								break;
-							default:
-								ReturnValue += 0;
-						};  //End Switch
-					}
-					else {
-						throw 'Not a box number';	
-					}; //End of IF in IF statement
-				} else {
-					//If rest of string contains only digits then convert to number and update ReturnValue
-					if (/^\d+$/.test(Calculation[m].substring(1))) {	
-						var numberValue = parseFloat(Calculation[m].substring(1));
-						switch(Calculation[m].charAt(0)) {
-							case "+":
-								ReturnValue += numberValue;
-								break
-							case "-":
-								ReturnValue -= numberValue;
-								break
-							case "/":
-								ReturnValue /= numberValue;
-								break
-							case "*":
-								ReturnValue *= numberValue;
-								break
-							default:
-								ReturnValue += 0;
-						};  //End Switch
-					}
-					else {
-						throw 'Not a number';	
-					};  //End of IF in ELSE statement
-				};  //End IF ELSE
-			}; // End FOR Loop
-		}
-		catch {
-			//For errors such as invalid boxNum or out of range boxNum, or invalid absolute number
-			console.log("Error calculating value, check calculation array entered.")
-		}; // End of Try Catch statement
-		
-		//Round to given number of decimal places - if not given as integer between 0 and 5, then ignored
-		var	DecPl = Calculation[Calculation.length - 1];
-		if (Number.isInteger(DecPl) && (DecPl >=0 && DecPl <=5)) {
-			var temp = parseFloat(ReturnValue.toFixed(DecPl));
-			ReturnValue = temp;
-		};
-		return ReturnValue;
-	};
-*/
-	
-	
-/*
-	//Check whether an OFR box should be shaded to highlight that extra marks should be added - move to OFR file ***************************************
-	function OFRCheck(OFRInfo) {
-		//Cycle through all input boxes in question
-		var i;
-		var OFRTrue;
-		var OFRValue;
-		var OFRCount = 0;  //Count of all OFR boxes, correct or incorrect
-		for (i = 0; i < allBoxes.length; i++) {
-			//Check to see if the box is an OFR box
-			OFRTrue = hasSomeParentTheClass(allBoxes[i], 'OFR');
-			if (OFRTrue) {
-				console.log("OFR box number " + OFRCount + " is ");
-				//Check to see if the OFR box is incorrect
-				if (allBoxes[i].classList.contains("incorrect")) {
-					console.log("incorrect");
-					//If box is an OFR and incorrect, use OFRInfo to determine if background colour should change
-					//But first check that an OFR calculation has been entered by user
-					if (!(typeof OFRInfo[OFRCount] == 'undefined')) {
-						OFRValue = calculateValue(OFRInfo[OFRCount]);
-						console.log("OFRValue = " + OFRValue + " versus Box Value = " + allBoxes[i].value);
-						//If input box value and OFR calculated value are the same, change background colour
-						if (allBoxes[i].value == OFRValue && (!(allBoxes[i].value == ''))) {
-							allBoxes[i].style.backgroundColor = "rgba(253, 212, 5, 0.3)";	
-						};  //End colour change IF statement
-					}
-					else {
-						console.log("No valid OFR calculation given.");
-					}; //End of IF statement that checks whether an OFR calculationn has been entered
-				}
-				else {
-					console.log("correct");
-				};  //End of IF statment that checks if OFR box is incorrect
-				//Increment OFR count
-				OFRCount = ++OFRCount;
-			};  //End of IF statement that checks if input box is an OFR box
-		};  //End of FOR loop working through all input boxes in question
-	};  //End of OFRCheck function
-*/
-
 
 	//Create array of all input boxes in question called allBoxes - used for OFR, Totals and Groups
 	getBoxes();
@@ -202,31 +40,6 @@ $(document).ready(function() {
 	OFRCheck([["+B1","+B2",0],["+1000","+B1","+B2",0]]);
 	
 	
-/*
-	//Function to update totals in each total box - move to TOTAL js file ********************************
-	function updateTotals(TotalInfo) {
-		//Find just the total boxes, and for each one, calculate new total (value)
-		var m;
-		var countTotalBoxes = 0;  //Count of all TOTAL boxes
-		for (m = 0; m < allBoxes.length; m++) {
-			//Check to see if the box is a TOTAL box
-			var totalBoxTrue = hasSomeParentTheClass(allBoxes[m], 'TOTAL');
-			if (totalBoxTrue) {
-				console.log("TOTAL box number " + countTotalBoxes + " is ");
-				//Format total boxes 
-				allBoxes[m].style.backgroundColor = "rgba(0, 168, 81, 0.3)";
-				allBoxes[m].style.color = "black;";
-				allBoxes[m].style.fontWeight = "bold";
-				//Update total value
-				allBoxes[m].value = calculateValue(TotalInfo[countTotalBoxes]);
-				//Increment Total Boxes count
-				countTotalBoxes = ++countTotalBoxes;				
-			};
-		};
-	};
-*/
-	
-		
 	//Deal with TOTAL boxes when DOM ready and on button click	
 	// Calcaultions for Total boxes - shown separately as used twiced
 	var totalCalculations = [["+B6","+B8",0],["+B7","+B9",0]];
@@ -250,7 +63,13 @@ $(document).ready(function() {
 </noscript>
 	
 <p class="normalHeading">JavaScript Testing Page</p>
-<p>Some question text.</p>
+<p>This project is about writing Javascript code tor Moodle cloze questions that increase functionality, namely:</p>
+<ul>
+  <li>Highlighting answers that meet the Own Figure Rule</li>
+  <li>Use of automated totals</li>
+</ul>
+<p>&nbsp;</p>
+<p>Some question text. Additional answer formats included below to ensure code working okay.</p>
 <p>A multiple choice question, choices shown vertically, answer is 99 {:MCVS:~=99~100~98}</p>
 <p>A short answer question, answer is 99 {:SA:~=99}</p>
 <p>&nbsp;</p>

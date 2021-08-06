@@ -10,7 +10,7 @@
 			//Check to see if the box is a TOTAL box
 			var totalBoxTrue = hasSomeParentTheClass(allBoxes[m], 'TOTAL');
 			if (totalBoxTrue) {
-				console.log("TOTAL box number " + countTotalBoxes + " is ");
+				//console.log("TOTAL box number " + countTotalBoxes + " is ");
 				//Format total boxes 
 				allBoxes[m].style.backgroundColor = "rgba(0, 168, 81, 0.3)";
 				allBoxes[m].style.color = "black;";
